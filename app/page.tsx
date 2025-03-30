@@ -1,4 +1,9 @@
 import Head from "next/head";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs"
+import { Separator } from "@/components/ui/separator";
+import { ProfileNameHeader } from "@/components/ui/name-header";
+import { SocialMedia } from "@/components/ui/social-media";
+
 
 export default function Home() {
   return (
@@ -17,32 +22,25 @@ export default function Home() {
         </header>
 
         <section className="grid gap-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-2">About Me</h2>
-            <p>
-              Hey there! I&apos;m J.S, a passionate developer with a knack for
-              building scalable web applications. I love tinkering with code,
-              pushing boundaries, and crafting flawless experiences.
-            </p>
-          </div>
+          <ProfileNameHeader></ProfileNameHeader>
+          <Separator></Separator>
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger value="about">About</TabsTrigger>
+              <TabsTrigger value="work">Work</TabsTrigger>
+            </TabsList>
+            <TabsContent value="about">
+              Learning and mastering the art of building digital products, interfaces, and experiences.
+              <SocialMedia></SocialMedia>
 
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold mb-2">Projects</h2>
-            <ul className="list-disc list-inside">
-              <li>
-                <strong>Project One:</strong> A cool project that does amazing
-                things.
-              </li>
-              <li>
-                <strong>Project Two:</strong> Another awesome project showcasing
-                cutting-edge technology.
-              </li>
-              <li>
-                <strong>Project Three:</strong> A deep dive into scalable
-                architectures.
-              </li>
-            </ul>
-          </div>
+            </TabsContent>
+
+
+            <TabsContent value="work">
+              This is my first website project. More info and projects coming soon..
+            </TabsContent>
+          </Tabs>
+
         </section>
       </main>
     </div>

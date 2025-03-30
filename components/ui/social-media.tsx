@@ -1,7 +1,7 @@
-import { Separator } from "@radix-ui/react-separator";
 import { GoMail } from "react-icons/go";
 import { GrGithub } from "react-icons/gr";
 import { GrLinkedin } from "react-icons/gr"; // Import the LinkedIn icon
+import { Separator } from "./separator";
 
 export function SocialMedia() {
   return (

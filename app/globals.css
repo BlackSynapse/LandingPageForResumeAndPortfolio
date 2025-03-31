@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Orbitron:wght@400;700&effect=3d');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -116,7 +117,26 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+h2.effect-3d {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
 }

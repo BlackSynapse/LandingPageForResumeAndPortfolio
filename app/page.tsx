@@ -115,49 +115,42 @@ export default function Home() {
                     },
                     {
                       icon: <GrMail />,
-                      label: "name@email.fi",
-                      popoverContent: <Email email="name@email.fi" />,
+                      label: "johannes.seitalahti@gmail.com",
+                      popoverContent: (
+                        <Email email="johannes.seitalahti@gmail.com" />
+                      ),
                     },
                   ]}
                 />
               </FadeAnimation>
             </TabsContent>
-
             <TabsContent
               value="work"
               className="mt-6 text-base sm:text-lg md:text-xl transition-all"
             >
               <div className="min-h-[60vh]">
-                This is my first website project. More info and projects coming
-                soon..
+                <h3 className="text-xl font-semibold mb-4">
+                  My CV / Work History
+                </h3>
+                <div
+                  className="border rounded-lg overflow-hidden shadow-md w-full"
+                  style={{ minHeight: "50vh" }}
+                >
+                  <iframe
+                    src="/cv.pdf"
+                    className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]"
+                    title="My CV"
+                    style={{ border: "none" }}
+                  />
+                </div>
               </div>
-              <FadeAnimation fadeIn={true} fadeOut={true}>
-                <ActionGroup
-                  direction="responsive"
-                  size="md"
-                  actions={[
-                    {
-                      icon: <GrProjects />,
-                      label: "Projects",
-                      href: "#projects",
-                      target: "_self",
-                    },
-                    {
-                      icon: <GrCertificate />,
-                      label: "CV",
-                      href: process.env.NEXT_PUBLIC_CV_HREF ?? "/",
-                      target: "_blank",
-                    },
-                  ]}
-                />
-              </FadeAnimation>
             </TabsContent>
           </Tabs>
         </section>
-        <section id="projects" className="mt-20 scroll-mt-16 min-h-[80vh]">
-          <h3 className="text-2xl font-semibold mb-4">Projects</h3>
-          <p>Here’s where all the dope stuff goes...</p>
-        </section>
+        <section
+          id="projects"
+          className="mt-20 scroll-mt-16 min-h-[80vh]"
+        ></section>
       </main>
     </div>
   );

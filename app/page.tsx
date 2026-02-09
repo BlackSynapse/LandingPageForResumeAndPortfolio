@@ -16,6 +16,25 @@ import {
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+function DarkModeToggle() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    if (isDark) html.classList.add("dark");
+    else html.classList.remove("dark");
+  }, [isDark]);
+
+  return (
+    <button
+      onClick={() => setIsDark(!isDark)}
+      className="ml-4 px-3 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition-colors"
+    >
+      {isDark ? "Light Mode" : "Dark Mode"}
+    </button>
+  );
+}
+
 const tabs = ["about", "work"];
 
 export default function Home() {
@@ -30,10 +49,7 @@ export default function Home() {
 
   const handleTabChange = (newTab: string) => {
     if (!tabs.includes(newTab)) return;
-
-    if (tab !== newTab) {
-      setTab(newTab);
-    }
+    if (tab !== newTab) setTab(newTab);
 
     const currentParam = searchParams.get("t");
     if (currentParam !== newTab) {
@@ -46,45 +62,42 @@ export default function Home() {
 
   useEffect(() => {
     const param = searchParams.get("t");
-    if (param && tabs.includes(param) && param !== tab) {
-      setTab(param);
-    }
+    if (param && tabs.includes(param) && param !== tab) setTab(param);
   }, [searchParams, tab]);
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors font-roboto">
       <Head>
         <title>J.S Portfolio</title>
         <meta name="description" content="Portfolio for J.S" />
       </Head>
 
-      <main className="flex-1 container mx-auto">
-        <header>
-          <div className="flex justify-center">
-            <h2
-              className="whitespace-nowrap text-3xl md:text-6xl px-4 pb-4 rounded-lg scroll-m-20 font-semibold tracking-tight first:mt-0"
-              style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)" }}
-            >
-              {process.env.NEXT_PUBLIC_PROFILE_NAME ?? "John Doe"}
-            </h2>
-          </div>
+      <main className="flex-1 container mx-auto px-4 sm:px-6 md:px-8">
+        <header className="flex justify-center items-center flex-wrap py-6">
+          <h2
+            className="whitespace-nowrap text-3xl md:text-6xl font-orbitron px-4 pb-4 rounded-lg text-center"
+            style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)" }}
+          >
+            {process.env.NEXT_PUBLIC_PROFILE_NAME ?? "John Doe"}
+          </h2>
+          <DarkModeToggle />
         </header>
 
         <Separator />
+
         <section id="portfolio" className="min-h-[80vh]">
           <Tabs
             defaultValue={tabs[0]}
-            className="max-w-4xl px-6 sm:px-6 md:px-8"
             value={tab}
+            className="max-w-4xl mx-auto"
           >
             <TabControls
               tabs={tabs}
               currentTab={tab}
               onTabChange={handleTabChange}
-              triggerBaseClass={
-                "transition-all duration-500 ease-in-out px-4 py-2 rounded-md font-medium"
-              }
-              activeClass={"text-gray-600"}
-              inactiveClass={"text-blue-900"}
+              triggerBaseClass="transition-all duration-500 ease-in-out px-4 py-2 rounded-md font-medium"
+              activeClass="text-gray-600 dark:text-gray-300"
+              inactiveClass="text-blue-900 dark:text-blue-400"
             />
 
             <TabsContent
@@ -124,6 +137,7 @@ export default function Home() {
                 />
               </FadeAnimation>
             </TabsContent>
+
             <TabsContent
               value="work"
               className="mt-6 text-base sm:text-lg md:text-xl transition-all"
@@ -147,10 +161,6 @@ export default function Home() {
             </TabsContent>
           </Tabs>
         </section>
-        <section
-          id="projects"
-          className="mt-20 scroll-mt-16 min-h-[80vh]"
-        ></section>
       </main>
     </div>
   );

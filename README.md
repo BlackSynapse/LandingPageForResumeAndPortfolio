@@ -1,2 +1,2 @@
-Landing page for Resume and IT portfolio
-
+Landing page for Resume.
+Made with Next.js, React, Tailwind and TypeScript

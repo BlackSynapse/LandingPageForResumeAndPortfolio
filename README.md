@@ -1,1 +1,1 @@
-Landing Page for my resume and IT project portfolio
+Landing page for Resume and IT portfolio
